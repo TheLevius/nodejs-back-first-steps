@@ -1,9 +1,5 @@
 const http = require('http');
-
-const users = [
-    {id: 1, name: 'Sasha'},
-    {id: 2, name: 'Artem'}
-]
+const { getUsers, addUser } = require('./repository');
 
 const cors = (req, res) => {
     // Set CORS headers
@@ -28,10 +24,10 @@ const server = http.createServer( (req, res) => {
     switch (req.url) {
         case '/users': {
             if (req.method === 'POST') {
-                users.push({name: 'Alexey'})
+                addUser('Alexey');
                 res.write(JSON.stringify({success: true}));
             }
-            res.write(JSON.stringify(users));
+            res.write(JSON.stringify(getUsers()));
             break;
         }
         case '/lessons': {

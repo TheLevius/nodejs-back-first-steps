@@ -17,14 +17,17 @@ const cors = (req, res) => {
 }
 
 const server = http.createServer( (req, res) => {
-    
+    //CORS
     if (cors(req, res)) return;
     
-    console.log('some request');
+    console.log(`some request`);
     
     switch (req.url) {
+        case '/': res.write(`<h1>Server is Ok, but you are in root</h1>`)
+            res.end();
+            break;
         case '/users': usersController(req, res)
-        break;
+            break;
 
         case '/lessons': {
             res.write('TASKS');

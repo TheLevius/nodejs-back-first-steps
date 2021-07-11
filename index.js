@@ -3,6 +3,9 @@ const {addUser, getUsers} = require('./repository');
 const express = require('express');
 const cors = require('cors');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/NodeStudyDB', {useNewUrlParser: true});
+
 const users = require('./users-router');
 const app = express();
 

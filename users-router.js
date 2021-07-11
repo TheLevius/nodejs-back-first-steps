@@ -1,5 +1,6 @@
 
-const {getUsers, addUser} = require('./repository');
+//Controller level
+const {getUsers, addUser, getUser, deleteUser, updateUser} = require('./repository');
 
 const express = require('express');
 const router = express.Router();
@@ -10,30 +11,41 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 router.get('/', async (req, res) => {
-    let users = await getUsers();
-    if (!!req.query.search) {
-        users = users.filter(u => u.name.indexOf(req.query.search) > -1)
-    }
-
-    res.send(users)
+    let users = await getUsers(req.query.search);
+    res.send(users);
 })
 router.get('/:id', async (req, res) => {
-    let users = await getUsers();
-    let user = users.find(u => u.id == req.params.id)
+    const userId = req.params.id;
+    const user = await getUser(userId);
     if (user) {
         res.send(user);
     } else {
         res.send(404)
     }
-    
+});
+
+
+router.delete('/:id', async (req, res) => {
+    try {
+        await deleteUser(req.params.id)
+        res.send(204)
+    }
+    catch {
+        res.send(404)
+    }
 });
 
 router.post('/', async (req, res) => {
-    await addUser(req.body.name)
-    .then((resolve) => {
-        res.send(JSON.stringify({success: true}));
-    })
-    
+    const name = req.body.name;
+    await addUser(name);
+    res.send({success: true});
+});
+
+router.put('/', async (req, res) => {
+    const name = req.body.name;
+    const id = req.body.id;
+    await updateUser(id, name);
+    res.send({success: true});
 });
 
 module.exports = router;

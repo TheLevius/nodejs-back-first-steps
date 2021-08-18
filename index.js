@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const mongoose = require('mongoose');
 mongoose.connect(
-    'mongodb+srv://levius:getaccess@netherlandsazurecluster.3adpc.mongodb.net/study-app',
+    process.env.MONGODB_URI,
     { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: ಠ_ಠ'));

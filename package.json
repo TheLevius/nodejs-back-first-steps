@@ -6,8 +6,8 @@
   "author": "TheLevius",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "SET MONGODB_URI=mongodb+srv://levius:getaccess@netherlandsazurecluster.3adpc.mongodb.net/study-app && SET PORT=3100 && nodemon index.js",
+    "start": "SET MONGODB_URI=mongodb+srv://levius:getaccess@netherlandsazurecluster.3adpc.mongodb.net/study-app && SET PORT=3100 && node index.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

@@ -32,7 +32,7 @@ app.get('/tasks', async (req, res) => {
 app.use((req, res) => {
     res.send({value: 404});
 })
-const portNumber = 7542;
-app.listen(portNumber, function () {
-    console.log(`---> App is listening on port ${portNumber} <---`)
+
+app.listen(process.env.PORT, function () {
+    console.log(`---> App is listening on port ${process.env.PORT} <---`)
 })

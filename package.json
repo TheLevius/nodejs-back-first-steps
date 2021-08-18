@@ -1,4 +1,16 @@
 {
+  "name": "nodejs-back-first-steps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:TheLevius/nodejs-back-first-steps.git",
+  "author": "TheLevius",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",

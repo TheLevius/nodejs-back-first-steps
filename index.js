@@ -1,10 +1,16 @@
-const {addUser, getUsers} = require('./repository');
 // create express app
 const express = require('express');
 const cors = require('cors');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/NodeStudyDB', {useNewUrlParser: true});
+mongoose.connect(
+    'mongodb+srv://levius:getaccess@netherlandsazurecluster.3adpc.mongodb.net/study-app',
+    { useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: ಠ_ಠ'));
+db.once('open', () => {
+    console.log(`MongoDB connected`)
+})
 
 const users = require('./users-router');
 const app = express();
